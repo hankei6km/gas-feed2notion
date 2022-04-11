@@ -1,11 +1,11 @@
 changelog:
   categories:
-    - title: Features
-      labels:
-        - enhancement
     - title: Types Changes
       labels:
         - types
+    - title: Features
+      labels:
+        - enhancement
     - title: Bug Fixes
       labels:
         - bug

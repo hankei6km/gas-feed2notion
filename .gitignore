@@ -122,5 +122,5 @@ dist
 /md2html.zip
 /tmp/
 /build/
-/test/build/md2html.spec.js
+/test/build/feed2notion.spec.js
 /index.d.ts

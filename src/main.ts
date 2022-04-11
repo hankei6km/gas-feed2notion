@@ -1,1 +1,1 @@
-export { MD2html } from './md2html.js'
+export { FeedToNotion } from './feed2notion.js'

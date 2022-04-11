@@ -1,12 +1,9 @@
 {
   "compilerOptions": {
     "target": "ES2019",
-    "module": "ES2020",
-    "lib": [ "ESNext" ],
-    "types": [
-       "@types/jest",
-       "@types/google-apps-script",
-    ],
+    "module": "ES2022",
+    "lib": ["ESNext"],
+    "types": ["@types/jest", "@types/google-apps-script"],
     "moduleResolution": "node",
     "strict": true,
     "skipLibCheck": true,
@@ -15,8 +12,8 @@
     "newLine": "lf",
     "outDir": "build",
     "esModuleInterop": true,
-    "allowJs":true
+    "allowJs": true
   },
   "exclude": ["node_modules", "src/**/*.test.ts"],
-  "include": ["src/**/*.ts","test/**/*.ts"]
+  "include": ["src/**/*.ts", "test/**/*.ts"]
 }

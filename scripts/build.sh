@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-NAMESPACE="MD2html"
-BASENAME="md2html"
+NAMESPACE="FeedToNotion"
+BASENAME="feed2notion"
 
 BUILD_DIR="build"
 # rollupjs でビルドされた結果(定義は "rollup.js" でされている).

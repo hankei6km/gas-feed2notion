@@ -1,34 +1,47 @@
 /**
- * my-starter-gas-lib-ts
+ * gas-feed2notion
  * @copyright (c) 2022 hankei6km
  * @license MIT
- * see "LICENSE.txt" "OPEN_SOURCE_LICENSES.txt" of "my-starter-gas-lib-ts.zip" in
+ * see "LICENSE.txt" "OPEN_SOURCE_LICENSES.txt" of "gas-feed2notion.zip" in
  * releases(https://github.com/hankei6km/gas-md2html/releases)
  */
 
 'use strict'
 
 /**
- * Markdown ソース. Array の場合は '\n' で join される.
- * @typedef {string|number|Array<Array<string|number>>|undefined} MarkdownSource
- */
-
-/**
- * Mardkdown を HTML へ変換.
+ * Send items that are fetched via feed to Notion
  *
- * @param {string|number|Array<Array<string|number>>|undefined } md - Markdown ソース. Array の場合は '\n' で join される.
- * @returns {string} HTML
+ * @param {string} apiKey
+ * @param {FeedItemsOpts} opts
+ * @returns {void}
  */
-function toHtml(md) {
-  return _entry_point_.MD2html.toHtml(md)
+function send(apiKey, opts) {
+  return _entry_point_.FeedToNotion.send(apiKey, opts)
 }
 
 /**
- * Mardkdown を HTML へ変換(sanitize 無し).
+ * Get preset transformer for feed item
  *
- * @param {string|number|Array<Array<string|number>>|undefined} md - Markdown ソース. Array の場合は '\n' で join される.
- * @returns {string} HTML
+ * @returns {Array<function>}
  */
-function toHtml_unsafe(md) {
-  return _entry_point_.MD2html.toHtml_unsafe(md)
+function preseFeedTransformers() {
+  return _entry_point_.FeedToNotion.preseFeedTransformers()
+}
+
+/**
+ * Get preset transformer for param item
+ *
+ * @returns {Array<function>}
+ */
+function presetParamTransformers() {
+  return _entry_point_.FeedToNotion.presetParamTransformers()
+}
+
+/**
+ * Get wordsToMentionParamTeransFormer()
+ *
+ * @returns {function}
+ */
+function getWordsToMentionParamTeransFormer() {
+  return _entry_point_.FeedToNotion.getWordsToMentionParamTeransFormer()
 }
