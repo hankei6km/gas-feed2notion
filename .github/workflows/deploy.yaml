@@ -1,0 +1,114 @@
+name: Deploy(push) project in GAS and Upload files to release on repo
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  deploy-gas-project:
+    # prerelease は除外.
+    if: ${{ github.event.release.prerelease ==  false }}
+    runs-on: ubuntu-latest
+
+    # 開発と公開どちらも同じデプロイ(バージョンの割り当て)にさせる.
+    strategy:
+      matrix:
+        include:
+          - environment: dev
+          - environment: rel
+
+    # https://github.community/t/environment-name-does-not-support-matrix/150331/3
+    environment:
+      name: ${{ matrix.environment }}
+
+    steps:
+      # prerelease 的な文字が含まれていたら失敗させる.
+      - name: Check name and tag_name
+        if: >-
+          ${{ contains(github.event.release.name, 'p') ||
+          contains(github.event.release.tag_name, 'p') ||
+          contains(github.event.release.name, '-') ||
+          contains(github.event.release.tag_name, '-') }}
+        run: |
+          echo "name: ${REL_NAME}"
+          echo "tag_name: ${TAG_NAME}"
+          exit 1
+        env:
+          REL_NAME: ${{ github.event.release.name }}
+          TAG_NAME: ${{ github.event.release.tag_name }}
+
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      # https://docs.github.com/ja/free-pro-team@latest/actions/guides/caching-dependencies-to-speed-up-workflows
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-deploy-dev-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-deploy-dev-${{ env.cache-name }}-
+            ${{ runner.os }}-deploy-dev-
+
+      - name: Install clasp
+        # バージョン固定した方がよいか ?
+        run: npm install -g @google/clasp
+
+      - name: Install modules
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test:build
+
+      - name: Build files to push gas project
+        # テスト用にビルドされたものが存在するが再度ビルドする.
+        run: npm run build
+
+      - name: Setup files for clasp
+        run: npm run setup:clasp
+        env:
+          GAS_SCRIPT_ID: ${{ secrets.GAS_SCRIPT_ID }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          SCOPE: ${{ secrets.SCOPE }}
+          ID_TOKEN: ${{ secrets.ID_TOKEN }}
+          EXPIRY_DATE: ${{ secrets.EXPIRY_DATE }}
+          REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+
+      - name: Push source files to gas project
+        run: npm run push
+
+      # version は自動採番にまかせる.
+      - name: Deploy HEAD in gas project
+        run: npm run deploy -- --description "$(echo "${BODY}" | head -n 1 | tr -d '\n')"
+        env:
+          BODY: ${{ github.event.release.body }}
+
+      # 念のため実行.
+      - name: Cleanup files for clasp
+        run: npm run cleanup:clasp
+
+      # 以下、リリースに build したファイルをアップロード
+      # matrix が rel のときのみ
+      - name: Make archilve file
+        if: ${{ matrix.environment == 'rel' }}
+        run: zip "./my-starter-gas-lib-ts.zip" build/*
+
+      - name: Upload archive file to release Asset
+        id: upload-release-asset
+        if: ${{ matrix.environment == 'rel' }}
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./my-starter-gas-lib-ts.zip
+          asset_name: my-starter-gas-lib-ts.zip
+          asset_content_type: application/zip

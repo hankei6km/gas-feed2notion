@@ -1,0 +1,16 @@
+{
+  "token": {
+    "access_token": "ACCESS_TOKEN",
+    "scope": "SCOPE",
+    "token_type": "Bearer",
+    "id_token": "ID_TOKEN",
+    "expiry_date": 0,
+    "refresh_token": "REFRESH_TOKEN"
+  },
+  "oauth2ClientSettings": {
+    "clientId": "CLIENT_ID",
+    "clientSecret": "CLIENT_SECRET",
+    "redirectUri": "http://localhost"
+  },
+  "isLocalCreds": false
+}

@@ -1,0 +1,66 @@
+name: Push to GAS project
+on:
+  push:
+    branches:
+      - '**'
+      - '!main'
+    tags:
+      - '!v*'
+
+jobs:
+  push-to-gas:
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      # https://docs.github.com/ja/free-pro-team@latest/actions/guides/caching-dependencies-to-speed-up-workflows
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-push-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-push-${{ env.cache-name }}-
+            ${{ runner.os }}-push-
+
+      - name: Install clasp
+        # バージョン固定した方がよいか ?
+        run: npm install -g @google/clasp
+
+      - name: Install modules
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test:build
+
+      - name: Build files to push gas project
+        # テスト用にビルドされたものが存在するが再度ビルドする.
+        run: npm run build
+
+      - name: Setup files for clasp
+        run: npm run setup:clasp
+        env:
+          GAS_SCRIPT_ID: ${{ secrets.GAS_SCRIPT_ID }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          SCOPE: ${{ secrets.SCOPE }}
+          ID_TOKEN: ${{ secrets.ID_TOKEN }}
+          EXPIRY_DATE: ${{ secrets.EXPIRY_DATE }}
+          REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+
+      - name: Push source files to gas project
+        run: npm run push
+
+      # 念のため実行.
+      - name: Cleanup files for clasp
+        run: npm run cleanup:clasp
