@@ -26,13 +26,18 @@ Google Apps Script のスクリプトから RSS フィードを取得し Notion 
 ### Notion インテグレーションを作成
 
 Notion 外部からデータベースを操作するためのインテグレーション(API KEY)が必要です。以下を参考に作成してください。
-名前は任意ですが後述の通知機能でメンションを行ったユーザーとして表示されます。
 
 - [Getting started # Step 1: Create an integration.](https://developers.notion.com/docs/getting-started#step-1-create-an-integration)
 
+名前は任意ですが後述の通知機能でメンションを行ったユーザーとして表示されます。
+機能は以下のように設定します。
+
+- コンテンツ機能 - 「コンテンツを読み取る」「コンテンツを挿入」にチェック
+- ユーザー機能 - 通知機能を利用する場合は最低限「メールアドレスなしでユーザー情報を読み取る」が必要
+
 ### インテグレーションへの許可
 
-以下を参考にデータベースをインテグレーションと共有してください。
+以下を参考にページをインテグレーションと共有してください(データベースをスクリプトで作成するためにページを共有しています)。
 
 - [Getting started # Step 2: Share a database with your integration](https://developers.notion.com/docs/getting-started#step-2-share-a-database-with-your-integration)
 
