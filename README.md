@@ -65,7 +65,7 @@ database_id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
 ### Google Apps Script で実行
 
-スタンドアロンのスクリプトを作成し以下手順を実行してください。
+スタンドアロンのスクリプトを作成し、以下の手順を実行してください。
 
 1. スクリプトプロパティに `notion_api_key` `database_id` を追加
 1. 「Setup」の手順でライブラリーを追加
