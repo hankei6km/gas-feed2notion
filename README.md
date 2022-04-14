@@ -109,6 +109,33 @@ function feed2notion() {
 - 3 日以内に更新されたページがない - デフォルトでは 3 日以内の記事のみを Notion へ送信します
 - フィードのサーバーが地域などを制限 - Google Apps Script が実行されるサーバーの地域からの接続を制限されている場合があります
 
+### og:image
+
+フィードに画像が登録されてれいない場合、各ページ og:image の URL を取得しています。以下のようにコードを変更することで無効化できます。
+
+```js
+function settings_() {
+  const props = PropertiesService.getScriptProperties()
+  const apiKey = props.getProperty('notion_api_key')
+  const database_id = props.getProperty('database_id')
+  const opts = {
+    database_id,
+    feedTransfomers: [],
+    feeds: [{ name: 'feed name', url: 'feed url' }],
+    limit: 10
+  }
+  return {
+    apiKey,
+    opts
+  }
+}
+
+function feed2notion() {
+  const settings = settings_()
+  FeedToNotion.send(settings.apiKey, settings.opts)
+}
+```
+
 ### キーワード指定による通知
 
 以下のようにコードを変更することで「フィード内に指定されたキーワードが存在していたらメンションを行う」設定をできます。
