@@ -1,6 +1,7 @@
 import typescript from '@rollup/plugin-typescript'
 import commonjs from '@rollup/plugin-commonjs'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
+import json from '@rollup/plugin-json'
 import license from 'rollup-plugin-license'
 import * as path from 'path'
 
@@ -19,6 +20,7 @@ export default {
       extensions
     }),
     commonjs({}),
+    json(),
     license({
       sourcemap: false,
       // cwd: ".", // Default is process.cwd()
