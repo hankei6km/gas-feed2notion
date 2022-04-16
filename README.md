@@ -58,13 +58,13 @@ Notion 外部からデータベースを操作するためのインテグレー�
 
 ### インテグレーションへの許可
 
-以下を参考にページをインテグレーションと共有してください(データベースをスクリプトで作成するためにページを共有しています)。
+以下を参考に用意したページをインテグレーションと共有してください(データベースをスクリプトで作成するためにページを共有しています)。
 
 - [Getting started # Step 2: Share a database with your integration](https://developers.notion.com/docs/getting-started#step-2-share-a-database-with-your-integration)
 
 ### データベースを作成
 
-以下のようにスクリプトを実行することで作成できます。
+このリポジトリをローカルへ clone 後、以下のようにスクリプトを実行することで作成できます。
 ここで表示される `user_id` と `database_id` は後の設定で利用します。
 なお、実行には `jq` が必要です。
 
