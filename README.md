@@ -19,7 +19,7 @@ flowchart LR
   end
 ```
 
-# Example
+## Example
 
 ![Notion 上で RSS フィードを表示しているスクリーンショット](images/make-gas-library-to-setup-notion-as-feed-reader-intro.gif)
 
