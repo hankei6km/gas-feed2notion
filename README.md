@@ -240,6 +240,14 @@ export function getWordsToMentionParamTeransFormer(
 }
 ```
 
+## TypeScript
+
+TypeScript(clasp) でコードを記述している場合は、`@hankei6km/gas-feed2notion` を import することで型定義を利用できます。
+
+```console
+$ npm install --save-dev @hankei6km/gas-feed2notion
+```
+
 ## License
 
 MIT License
