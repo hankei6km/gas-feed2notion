@@ -182,9 +182,11 @@ describe('getWordsToMentionParamTeransFormer()', () => {
             paragraph: {
               rich_text: [
                 {
-                  type: 'text',
-                  text: {
-                    content: 'test-description-1'
+                  type: 'mention',
+                  mention: {
+                    user: {
+                      id: 'test-user-id'
+                    }
                   }
                 }
               ]
@@ -196,11 +198,9 @@ describe('getWordsToMentionParamTeransFormer()', () => {
             paragraph: {
               rich_text: [
                 {
-                  type: 'mention',
-                  mention: {
-                    user: {
-                      id: 'test-user-id'
-                    }
+                  type: 'text',
+                  text: {
+                    content: 'test-description-1'
                   }
                 }
               ]
@@ -233,9 +233,11 @@ describe('getWordsToMentionParamTeransFormer()', () => {
             paragraph: {
               rich_text: [
                 {
-                  type: 'text',
-                  text: {
-                    content: 'test-description-2'
+                  type: 'mention',
+                  mention: {
+                    user: {
+                      id: 'test-user-id'
+                    }
                   }
                 }
               ]
@@ -247,11 +249,9 @@ describe('getWordsToMentionParamTeransFormer()', () => {
             paragraph: {
               rich_text: [
                 {
-                  type: 'mention',
-                  mention: {
-                    user: {
-                      id: 'test-user-id'
-                    }
+                  type: 'text',
+                  text: {
+                    content: 'test-description-2'
                   }
                 }
               ]
