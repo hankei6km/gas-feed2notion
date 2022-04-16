@@ -2,6 +2,27 @@
 
 RSS フィードを Notion データベースへ送信する Google Apps Script ライブラリー。
 
+```mermaid
+flowchart LR
+  feed1[( FEED A )] -- fetch --> f2n
+  feed2[( FEED B )] -- fetch --> f2n
+  feed3[( FEED C )] -- fetch --> f2n
+  subgraph GAS
+    f2n[[ feed2notion ]]
+  end
+  subgraph Notion
+    f2n -- send -->
+    db[( DATABASE )]
+    db --> view1[/ LIST view /]
+    db --> view2[/ LIST view /]
+    db --> view3[/ GALLERY view /]
+  end
+```
+
+# Example
+
+![Notion 上で RSS フィードを表示しているスクリーンショット](images/make-gas-library-to-setup-notion-as-feed-reader-intro.gif)
+
 ## Setup
 
 ライブラリーは App Script で利用できる状態になっています。
