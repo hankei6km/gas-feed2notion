@@ -217,7 +217,7 @@ export function getWordsToMentionParamTeransFormer(
             item.feedName.match(w)
         )
       ) {
-        param.children?.push({
+        param.children?.unshift({
           object: 'block',
           type: 'paragraph',
           paragraph: {
