@@ -3,7 +3,7 @@
  * @copyright (c) 2022 hankei6km
  * @license MIT
  * see "LICENSE.txt" "OPEN_SOURCE_LICENSES.txt" of "gas-feed2notion.zip" in
- * releases(https://github.com/hankei6km/gas-md2html/releases)
+ * releases(https://github.com/hankei6km/gas-grecent2html/releases)
  */
 
 'use strict'
