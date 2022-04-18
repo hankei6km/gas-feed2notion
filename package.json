@@ -1,7 +1,7 @@
 {
   "name": "@hankei6km/gas-feed2notion",
   "version": "0.1.0",
-  "description": "My Starter to make Google Apps Script library by using TypeScript",
+  "description": "TypeScript definitions for gas library @hankei6km/gas-feed2notion",
   "author": "hankei6km <hankei6km@gmail.com> (https://github.com/hankei6km)",
   "license": "MIT",
   "repository": {
