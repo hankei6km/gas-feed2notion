@@ -51,7 +51,7 @@
     "@types/jest": "^27.5.0",
     "jest": "^27.5.1",
     "rimraf": "^3.0.2",
-    "rollup": "^2.75.3",
+    "rollup": "^2.75.5",
     "rollup-plugin-license": "^2.8.0",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.8.0",
