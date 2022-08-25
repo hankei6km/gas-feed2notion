@@ -47,7 +47,7 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-typescript": "^8.4.0",
-    "@types/google-apps-script": "^1.0.54",
+    "@types/google-apps-script": "^1.0.55",
     "@types/jest": "^27.5.0",
     "jest": "^27.5.1",
     "rimraf": "^3.0.2",
