@@ -46,7 +46,7 @@
     "@rollup/plugin-commonjs": "^23.0.0",
     "@rollup/plugin-json": "^5.0.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
-    "@rollup/plugin-typescript": "^8.5.0",
+    "@rollup/plugin-typescript": "^9.0.1",
     "@types/google-apps-script": "^1.0.55",
     "@types/jest": "^27.5.0",
     "jest": "^27.5.1",
