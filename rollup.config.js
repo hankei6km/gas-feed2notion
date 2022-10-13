@@ -4,6 +4,7 @@ import { nodeResolve } from '@rollup/plugin-node-resolve'
 import json from '@rollup/plugin-json'
 import license from 'rollup-plugin-license'
 import * as path from 'path'
+import { fileURLToPath } from 'node:url'
 
 const extensions = ['.ts', '.js']
 
@@ -41,7 +42,11 @@ export default {
       thirdParty: {
         // includePrivate: true, // Default is false.
         output: {
-          file: path.join(__dirname, 'build', 'OPEN_SOURCE_LICENSES.txt'),
+          file: path.join(
+            path.dirname(fileURLToPath(import.meta.url)),
+            'build',
+            'OPEN_SOURCE_LICENSES.txt'
+          ),
           encoding: 'utf-8' // Default is utf-8.
         }
       }
