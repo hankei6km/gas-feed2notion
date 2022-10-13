@@ -1,0 +1,28 @@
+{
+  "name": "clasp",
+  "image": "ghcr.io/hankei6km/h6-dev-containers:clasp",
+  "runArgs": ["--privileged"],
+  "remoteUser": "vscode",
+  "postStartCommand": [
+    "/home/vscode/.local/bin/mount-gd.sh",
+    "/home/vscode/gdrive"
+  ],
+  "extensions": ["esbenp.prettier-vscode"],
+  "settings": {
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+  }
+}
