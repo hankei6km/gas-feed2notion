@@ -52,7 +52,7 @@
     "jest": "^27.5.1",
     "rimraf": "^3.0.2",
     "rollup": "^3.2.2",
-    "rollup-plugin-license": "^2.8.1",
+    "rollup-plugin-license": "^2.8.2",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.9.1",
     "tslib": "^2.4.0",
