@@ -42,7 +42,7 @@
     "parse5": "^6.0.1"
   },
   "devDependencies": {
-    "@notionhq/client": "^2.2.1",
+    "@notionhq/client": "^2.2.2",
     "@rollup/plugin-commonjs": "^23.0.2",
     "@rollup/plugin-json": "^5.0.1",
     "@rollup/plugin-node-resolve": "^15.0.1",
