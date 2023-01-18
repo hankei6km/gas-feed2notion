@@ -8,7 +8,7 @@ updates:
   - package-ecosystem: 'npm'
     directory: '/' # Location of package manifests
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
     ignore:
       - dependency-name: '@types/node'
         versions: ['17.x']
