@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Collect Labels from release note
         id: collect
-        uses: hankei6km/collect-labels-from-release-note@v0.2.0
+        uses: hankei6km/collect-labels-from-release-note@v0.2.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
