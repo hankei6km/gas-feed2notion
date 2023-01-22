@@ -1,4 +1,4 @@
-import htmlparser2 from 'htmlparser2'
+import { parseFeed } from 'htmlparser2'
 import { parseFragment } from 'parse5'
 import { fromParse5 } from 'hast-util-from-parse5'
 import { select } from 'hast-util-select'
@@ -110,7 +110,7 @@ export function* feedItems({
         return item
       })
     } else {
-      const res = htmlparser2.parseFeed(xmlText)
+      const res = parseFeed(xmlText)
       if (res) {
         let _items = root.getChildren('item', rss)
         if (_items.length === 0) {
