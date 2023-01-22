@@ -1,5 +1,5 @@
 import htmlparser2 from 'htmlparser2'
-import parse5 from 'parse5'
+import { parseFragment } from 'parse5'
 import { fromParse5 } from 'hast-util-from-parse5'
 import { select } from 'hast-util-select'
 import { FeedToNotion } from './feed2notion.js'
@@ -7,7 +7,7 @@ import { FeedToNotion } from './feed2notion.js'
 export function fetchOgImage(link: string): string | null | undefined {
   const resAll = UrlFetchApp.fetchAll([{ url: link }])
   const html = resAll[0].getContentText()
-  const p5ast = parse5.parseFragment(String(html), {
+  const p5ast = parseFragment(String(html), {
     sourceCodeLocationInfo: true
   })
   const ast = fromParse5(p5ast)
@@ -45,7 +45,7 @@ export const fetchOgImageFeedTransformer: FeedToNotion.FeedTransfomer =
         try {
           const res = UrlFetchApp.fetch(item.link)
           const html = res.getContentText()
-          const p5ast = parse5.parseFragment(String(html), {
+          const p5ast = parseFragment(String(html), {
             sourceCodeLocationInfo: true
           })
           const ast = fromParse5(p5ast)
