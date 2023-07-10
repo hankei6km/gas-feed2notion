@@ -10,16 +10,14 @@ export default {
     '<rootDir>/node_modules/',
     '<rootDir>/src/types/'
   ],
-  transform: {},
+  transform: {
+    '^.+\\.tsx?$': ['ts-jest', { useESM: true }]
+  },
   testEnvironment: 'jest-environment-node',
   // https://kulshekhar.github.io/ts-jest/docs/next/guides/esm-support/
   preset: 'ts-jest/presets/default-esm',
   extensionsToTreatAsEsm: ['.ts'],
-  globals: {
-    'ts-jest': {
-      useESM: true
-    }
-  },
+  globals: {},
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1'
   }

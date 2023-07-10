@@ -1,11 +1,22 @@
 import { jest } from '@jest/globals'
 import { CreatePageParameters } from '@notionhq/client/build/src/api-endpoints'
 import { FeedToNotion } from '../src/feed2notion.js'
+import type { FeedItem } from 'domutils'
 
 jest.unstable_mockModule('../src/util.js', () => {
   const mockFeedItems = jest.fn()
-  const mockGetFilterFeedTransformer = jest.fn<any, any[]>()
-  const mockFetchOgImageFeedTransformer = jest.fn<any, any[]>()
+  const mockGetFilterFeedTransformer =
+    jest.fn<
+      () => (
+        ite: Generator<FeedToNotion.FeedItem>
+      ) => IterableIterator<FeedToNotion.FeedItem>
+    >()
+  const mockFetchOgImageFeedTransformer =
+    jest.fn<
+      (
+        ite: Generator<FeedToNotion.FeedItem>
+      ) => IterableIterator<FeedToNotion.FeedItem>
+    >()
   const reset = (items: FeedToNotion.FeedItem[]) => {
     mockFeedItems.mockReset().mockImplementation(function* () {
       for (const i of items) {
