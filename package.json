@@ -43,7 +43,7 @@
     "@notionhq/client": "^2.2.10",
     "@rollup/plugin-commonjs": "^25.0.4",
     "@rollup/plugin-json": "^6.0.0",
-    "@rollup/plugin-node-resolve": "^15.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.0",
     "@rollup/plugin-typescript": "^11.1.2",
     "@types/google-apps-script": "^1.0.66",
     "@types/jest": "^29.5.3",
