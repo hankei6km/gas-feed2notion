@@ -45,7 +45,7 @@
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-typescript": "^12.1.1",
-    "@types/google-apps-script": "^1.0.84",
+    "@types/google-apps-script": "^1.0.85",
     "@types/jest": "^29.5.14",
     "hast-util-from-parse5": "^8.0.1",
     "hast-util-select": "^6.0.3",
