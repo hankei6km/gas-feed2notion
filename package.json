@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "htmlparser2": "^10.0.0",
-    "parse5": "^7.2.1"
+    "parse5": "^7.3.0"
   },
   "devDependencies": {
     "@notionhq/client": "^2.3.0",
