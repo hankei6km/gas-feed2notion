@@ -13,7 +13,7 @@ describe('createPage()', () => {
       fetch: mockfetch
     } as any
     createPage('test-api-key', 'test-param' as any)
-    expect(mockfetch).toBeCalledWith('https://api.notion.com/v1/pages', {
+    expect(mockfetch).toHaveBeenCalledWith('https://api.notion.com/v1/pages', {
       method: 'post',
       headers: {
         Authorization: `Bearer test-api-key`,
@@ -110,7 +110,7 @@ describe('getStoredItems()', () => {
         }
       }
     })
-    expect(mockfetch).toBeCalledWith(
+    expect(mockfetch).toHaveBeenCalledWith(
       'https://api.notion.com/v1/databases/test-database-id/query',
       {
         method: 'post',

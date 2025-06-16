@@ -32,8 +32,8 @@ describe('send()', () => {
         limit: 10
       })
     ).toBeUndefined()
-    expect(mockGetNamespace).toBeCalledTimes(4)
-    expect(mockfetch).toBeCalledTimes(1)
+    expect(mockGetNamespace).toHaveBeenCalledTimes(4)
+    expect(mockfetch).toHaveBeenCalledTimes(1)
   })
 })
 describe('preseFeedTransformers()', () => {
