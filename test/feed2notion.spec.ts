@@ -87,13 +87,13 @@ describe('FeedToNotion.send()', () => {
       ],
       limit: 10
     })
-    expect(mockGetSortedItems).toBeCalledWith(
+    expect(mockGetSortedItems).toHaveBeenCalledWith(
       'test-api-key',
       'test-database-id',
       86400000 // 3 日前に戻された値
     )
-    expect(mockCreatePage).toBeCalledWith('test-api-key', 'test-1')
-    expect(mockCreatePage).toBeCalledWith('test-api-key', 'test-2')
+    expect(mockCreatePage).toHaveBeenCalledWith('test-api-key', 'test-1')
+    expect(mockCreatePage).toHaveBeenCalledWith('test-api-key', 'test-2')
   })
 })
 

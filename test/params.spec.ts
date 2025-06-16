@@ -369,7 +369,7 @@ describe('genCreatePageParameters()', () => {
       after: 0,
       storedItems: { 'guid-1': 'item-1' }
     })
-    expect(mockFetchOgImageFeedTransformer).toBeCalledTimes(1)
+    expect(mockFetchOgImageFeedTransformer).toHaveBeenCalledTimes(1)
     expect(params).toEqual([
       [
         {
