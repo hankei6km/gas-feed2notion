@@ -37,7 +37,7 @@ jobs:
           REL_NAME: ${{ github.event.release.name }}
           TAG_NAME: ${{ github.event.release.tag_name }}
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Use Node.js 14.x
         uses: actions/setup-node@v4
