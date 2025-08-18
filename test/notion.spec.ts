@@ -1,15 +1,15 @@
 import { jest } from '@jest/globals'
 import { createPage, getStoredItems } from '../src/notion'
 
-const saveUrlFetchApp = global.UrlFetchApp
+const saveUrlFetchApp = globalThis.UrlFetchApp
 afterEach(() => {
-  global.UrlFetchApp = saveUrlFetchApp
+  globalThis.UrlFetchApp = saveUrlFetchApp
 })
 
 describe('createPage()', () => {
   it('should call create page api', () => {
     const mockfetch = jest.fn()
-    global.UrlFetchApp = {
+    globalThis.UrlFetchApp = {
       fetch: mockfetch
     } as any
     createPage('test-api-key', 'test-param' as any)
@@ -78,7 +78,7 @@ describe('getStoredItems()', () => {
         )
       })
 
-    global.UrlFetchApp = {
+    globalThis.UrlFetchApp = {
       fetch: mockfetch
     } as any
 
