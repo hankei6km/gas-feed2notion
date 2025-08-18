@@ -6,11 +6,11 @@ import {
   getFilterFeedTransformer
 } from '../src/util.js'
 
-const saveXmlService = global.XmlService
-const saveUrlFetchApp = global.UrlFetchApp
+const saveXmlService = globalThis.XmlService
+const saveUrlFetchApp = globalThis.UrlFetchApp
 afterEach(() => {
-  global.XmlService = saveXmlService
-  global.UrlFetchApp = saveUrlFetchApp
+  globalThis.XmlService = saveXmlService
+  globalThis.UrlFetchApp = saveUrlFetchApp
 })
 
 type MockNodeOpts = {
@@ -117,11 +117,11 @@ describe('feedItems()', () => {
         .mockReturnValueOnce('test-xml-a')
         .mockReturnValueOnce('test-xml-b')
     })
-    global.XmlService = {
+    globalThis.XmlService = {
       getNamespace: mockGetNamespace,
       parse: mockParse
     } as any
-    global.UrlFetchApp = {
+    globalThis.UrlFetchApp = {
       fetch: mockfetch
     } as any
     const g = feedItems({
@@ -235,11 +235,11 @@ describe('feedItems()', () => {
     const mockfetch = jest.fn().mockReturnValue({
       getContentText: jest.fn().mockReturnValueOnce(mockXmlText)
     })
-    global.XmlService = {
+    globalThis.XmlService = {
       getNamespace: mockGetNamespace,
       parse: mockParse
     } as any
-    global.UrlFetchApp = {
+    globalThis.UrlFetchApp = {
       fetch: mockfetch
     } as any
     const g = feedItems({
@@ -426,7 +426,7 @@ describe('fetchOgImagePreTransformer()', () => {
         .mockReturnValueOnce(mockHtml[0])
         .mockReturnValueOnce(mockHtml[1])
     })
-    global.UrlFetchApp = {
+    globalThis.UrlFetchApp = {
       fetch: mockfetch
     } as any
     const items: [FeedToNotion.FeedItem, string][] = []
@@ -488,7 +488,7 @@ describe('fetchOgImagePreTransformer()', () => {
     const mockfetch = jest.fn().mockReturnValue({
       getContentText: jest.fn().mockReturnValueOnce(mockHtml[0])
     })
-    global.UrlFetchApp = {
+    globalThis.UrlFetchApp = {
       fetch: mockfetch
     } as any
     const items: [FeedToNotion.FeedItem, string][] = []
