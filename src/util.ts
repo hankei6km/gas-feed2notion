@@ -84,58 +84,64 @@ export function* feedItems({
     let items: FeedToNotion.FeedItem[] = []
     const document = XmlService.parse(xmlText)
     const root = document.getRootElement()
-    if (root.getName() === 'rss') {
-      const channel = root.getChild('channel')
-      const _items = channel.getChildren('item')
-      items = _items.map((i) => {
-        const title = i.getChild('title')
-        const description = i.getChild('description')
-        const guid = i.getChild('guid')
-        const link = i.getChild('link')
-        const pubDate = i.getChild('pubDate')
-        const d = new Date(pubDate ? pubDate.getText() : now)
-        const item: FeedToNotion.FeedItem = {
-          feedName: name,
-          title: title ? title.getText() : '',
-          description: description ? description.getText() : '',
-          guid: guid ? guid.getText() : link ? link.getText() : '',
-          link: link ? link.getText() : '',
-          pubDate: d ? d.toISOString() : '',
-          time: d ? d.getTime() : now
+    if (root !== null) {
+      if (root.getName() === 'rss') {
+        const channel = root.getChild('channel')
+        if (channel) {
+          const _items = channel.getChildren('item')
+          items = _items.map((i) => {
+            const title = i.getChild('title')
+            const description = i.getChild('description')
+            const guid = i.getChild('guid')
+            const link = i.getChild('link')
+            const pubDate = i.getChild('pubDate')
+            const d = new Date(pubDate ? pubDate.getText() : now)
+            const item: FeedToNotion.FeedItem = {
+              feedName: name,
+              title: title ? title.getText() : '',
+              description: description ? description.getText() : '',
+              guid: guid ? guid.getText() : link ? link.getText() : '',
+              link: link ? link.getText() : '',
+              pubDate: d ? d.toISOString() : '',
+              time: d ? d.getTime() : now
+            }
+            const enclosure = i.getChild('enclosure')
+            const url = enclosure?.getAttribute('url')
+            if (url) {
+              item.enclosure = { url: url.getValue() }
+            }
+            return item
+          })
         }
-        let enclosure = i.getChild('enclosure')
-        if (enclosure) {
-          item.enclosure = { url: enclosure.getAttribute('url').getValue() }
-        }
-        return item
-      })
-    } else {
-      const res = parseFeed(xmlText)
-      if (res) {
-        let _items = root.getChildren('item', rss)
-        if (_items.length === 0) {
-          _items = root.getChildren('entry', atom)
-        }
-        items = res.items.map((v, idx) => {
-          const dateNode = _items[idx]?.getChild('date', nsDc)
-          const d = new Date(
-            v.pubDate ? v.pubDate : dateNode ? dateNode.getText() : now
-          )
-          const item: FeedToNotion.FeedItem = {
-            title: v.title || '',
-            description: v.description || '',
-            guid: v.id || v.link || '',
-            link: v.link || '',
-            feedName: name,
-            pubDate: d ? d.toISOString() : '',
-            time: d ? d.getTime() : now
+      } else {
+        const res = parseFeed(xmlText)
+        if (res) {
+          let _items = root.getChildren('item', rss)
+          if (_items.length === 0) {
+            _items = root.getChildren('entry', atom)
           }
-          const thumbNode = _items[idx]?.getChild('thumbnail', nsMedia)
-          if (thumbNode) {
-            item.enclosure = { url: thumbNode.getAttribute('url').getValue() }
-          }
-          return item
-        })
+          items = res.items.map((v, idx) => {
+            const dateNode = _items[idx]?.getChild('date', nsDc)
+            const d = new Date(
+              v.pubDate ? v.pubDate : dateNode ? dateNode.getText() : now
+            )
+            const item: FeedToNotion.FeedItem = {
+              title: v.title || '',
+              description: v.description || '',
+              guid: v.id || v.link || '',
+              link: v.link || '',
+              feedName: name,
+              pubDate: d ? d.toISOString() : '',
+              time: d ? d.getTime() : now
+            }
+            const thumbNode = _items[idx]?.getChild('thumbnail', nsMedia)
+            const url = thumbNode?.getAttribute('url')
+            if (url) {
+              item.enclosure = { url: url.getValue() }
+            }
+            return item
+          })
+        }
       }
     }
     if (items.every(({ time }) => time !== undefined)) {
