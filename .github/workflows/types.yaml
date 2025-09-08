@@ -50,7 +50,7 @@ jobs:
       - uses: actions/checkout@v5
 
       # npm に公開するように .npmrc ファイルを設定する
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
