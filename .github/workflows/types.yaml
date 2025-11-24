@@ -47,7 +47,7 @@ jobs:
           echo 'tag_name: ${{ github.event.release.tag_name }}'
           exit 1
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       # npm に公開するように .npmrc ファイルを設定する
       - uses: actions/setup-node@v6
